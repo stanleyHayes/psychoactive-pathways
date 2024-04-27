@@ -44,7 +44,7 @@ const storySlice = createSlice({
         loading: false,
         error: null,
         stories: [],
-        storyDetail: null
+        story: null
     },
     reducers: {},
     extraReducers: builder => {
@@ -53,6 +53,7 @@ const storySlice = createSlice({
             state.error = null;
         }).addCase(getStories.fulfilled, (state, action) => {
             state.stories = action.payload;
+            console.log(action.payload)
             state.error = null;
             state.loading = false;
         }).addCase(getStories.rejected, (state, action) => {

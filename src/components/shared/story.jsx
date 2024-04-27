@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {ChevronRight} from "@mui/icons-material";
 import {useNavigate} from "react-router-dom";
 import {readingTime} from "reading-time-estimator";
+import moment from "moment";
 
 const Story = ({story}) => {
     const navigate = useNavigate();
@@ -12,9 +13,17 @@ const Story = ({story}) => {
                 <Typography variant="body2" sx={{color: "text.primary", mb: 1}}>
                     {story.content[0]}
                 </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{mb: 1}}>
-                    {readingTime(story.content.join(" ")).text}
-                </Typography>
+                <Stack direction="row" spacing={2} justifyContent="flex-end" alignItems="center">
+                    <Typography variant="body2" color="text.secondary" sx={{mb: 1}}>
+                        {readingTime(story.content.join(" ")).text}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary" sx={{mb: 1}}>
+                        &middot;
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary" sx={{mb: 1}}>
+                        {moment(story.created_at).fromNow()}
+                    </Typography>
+                </Stack>
                 <Stack direction="row" spacing={2} justifyContent="flex-end" alignItems="center">
                     <Button
                         size="small"

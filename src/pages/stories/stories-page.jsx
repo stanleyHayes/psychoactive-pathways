@@ -18,6 +18,7 @@ const StoriesPage = () => {
 
     useEffect(() => {
         dispatch(STORY_ACTION_CREATORS.getStories());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

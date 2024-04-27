@@ -31,7 +31,7 @@ const StoriesPage = () => {
                             <Typography
                                 variant="h4"
                                 sx={{color: "text.primary", mb: 4, fontWeight: 200}}>
-                                Our Stories
+                                Our Stories ({stories?.length})
                             </Typography>
                         </Grid>
                         <Grid item={true} xs={12} md="auto">
@@ -120,7 +120,7 @@ const StoriesPage = () => {
                         </Grid>
 
                         <Grid
-                            whileInView="animate"
+                            animate="animate"
                             exit="exit"
                             initial="initial"
                             component={motion.div}

@@ -1,4 +1,4 @@
-import {Button, Card, CardContent, Stack, Typography} from "@mui/material";
+import {Button, Card, CardContent, Divider, Stack, Typography} from "@mui/material";
 import PropTypes from "prop-types";
 import {ChevronRight} from "@mui/icons-material";
 import {useNavigate} from "react-router-dom";
@@ -13,17 +13,19 @@ const Story = ({story}) => {
                 <Typography variant="body2" sx={{color: "text.primary", mb: 1}}>
                     {story.content[0]}
                 </Typography>
-                <Stack direction="row" spacing={2} justifyContent="flex-end" alignItems="center">
-                    <Typography variant="body2" color="text.secondary" sx={{mb: 1}}>
+                <Divider variant="fullWidth" sx={{my: 1}}/>
+                <Stack direction="row" spacing={2} justifyContent="flex-start" alignItems="center">
+                    <Typography variant="body2" color="text.secondary">
                         {readingTime(story.content.join(" ")).text}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{mb: 1}}>
+                    <Typography variant="body1" color="text.primary">
                         &middot;
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{mb: 1}}>
+                    <Typography variant="body2" color="text.secondary">
                         {moment(story.created_at).fromNow()}
                     </Typography>
                 </Stack>
+                <Divider variant="fullWidth" sx={{my: 1}}/>
                 <Stack direction="row" spacing={2} justifyContent="flex-end" alignItems="center">
                     <Button
                         size="small"
@@ -31,7 +33,7 @@ const Story = ({story}) => {
                         endIcon={<ChevronRight/>}
                         color="secondary"
                         onClick={() => navigate(`/stories/${story._id}`)}
-                        variant="text">
+                        variant="outlined">
                         Read More
                     </Button>
                 </Stack>

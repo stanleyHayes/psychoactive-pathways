@@ -51,7 +51,7 @@ const StoryDetailPage = () => {
             <Box sx={{py: 8}}>
                 <Container>
                     <Button
-                        startIcon={<KeyboardArrowLeft />}
+                        startIcon={<KeyboardArrowLeft/>}
                         onClick={() => navigate(-1)}
                         sx={{textTransform: "none", mb: 4}}
                         size="small"
@@ -62,7 +62,7 @@ const StoryDetailPage = () => {
                     <Grid container={true} justifyContent="space-between" alignItems="center" spacing={2}>
                         <Grid item={true} xs={12} md="auto">
                             <Typography sx={{color: "text.primary"}} variant="h4">
-                               Story Detail
+                                Story Detail
                             </Typography>
                         </Grid>
 
@@ -132,6 +132,7 @@ const StoryDetailPage = () => {
                                         <Paragraph
                                             showActions={false}
                                             paragraph={paragraph}
+                                            id={index}
                                         />
                                     </TimelineContent>
                                 </TimelineItem>

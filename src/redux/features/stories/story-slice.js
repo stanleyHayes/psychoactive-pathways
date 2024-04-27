@@ -6,7 +6,7 @@ const getStories = createAsyncThunk(
     async (arg, thunkAPI) => {
         try {
             const response = await STORIES_API.getStories();
-            return response.data;
+            return response.data.data;
         } catch (e) {
             const {message} = e.response.data;
             thunkAPI.rejectWithValue(message);
@@ -15,11 +15,12 @@ const getStories = createAsyncThunk(
 
 const createStory = createAsyncThunk(
     'stories/createStory',
-    async ({setLoading, data}, thunkAPI) => {
+    async ({setLoading, data, navigate}, thunkAPI) => {
         try {
             const response = await STORIES_API.createStory(data);
             setLoading(false);
-            return response.data;
+            navigate('/stories')
+            return response.data.data;
         } catch (e) {
             const {message} = e.response.data;
             thunkAPI.rejectWithValue(message);
@@ -31,7 +32,7 @@ const getStory = createAsyncThunk(
     async ({id}, thunkAPI) => {
         try {
             const response = await STORIES_API.getStory(id);
-            return response.data;
+            return response.data.data;
         } catch (e) {
             const {message} = e.response.data;
             thunkAPI.rejectWithValue(message);
@@ -53,7 +54,6 @@ const storySlice = createSlice({
             state.error = null;
         }).addCase(getStories.fulfilled, (state, action) => {
             state.stories = action.payload;
-            console.log(action.payload)
             state.error = null;
             state.loading = false;
         }).addCase(getStories.rejected, (state, action) => {

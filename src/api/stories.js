@@ -8,7 +8,7 @@ const getStories = () => {
     });
 }
 
-const getStory = ( id) => {
+const getStory = (id) => {
     return axios({
         method: 'get',
         url: `${PSYCHOACTIVE_PATHWAYS_CLIENT_CONSTANTS.BASE_URL}/api/v1/user/stories/${id}`

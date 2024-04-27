@@ -62,9 +62,11 @@ const CreateStoryPage = () => {
         }
     });
 
+    const navigate = useNavigate();
+
     const submitStory = () => {
         setLoading(true);
-        dispatch(STORY_ACTION_CREATORS.createStory({setLoading, data: content}));
+        dispatch(STORY_ACTION_CREATORS.createStory({setLoading, data: content, navigate}));
     }
 
     const [errorOpen, setErrorOpen] = useState(false);
@@ -87,8 +89,6 @@ const CreateStoryPage = () => {
         setSelectedIndex(-1);
         setEditParagraphSelected(false);
     }
-
-    const navigate = useNavigate();
 
     return (
         <Layout>

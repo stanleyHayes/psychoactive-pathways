@@ -58,8 +58,8 @@ Paragraph.propTypes = {
     paragraph: PropTypes.string.isRequired,
     handleEdit: PropTypes.func,
     showActions: PropTypes.bool.isRequired,
-    id: PropTypes.number.isRequired,
-    setSelectedIndex: PropTypes.func.isRequired,
-    setDeleteParagraphSelected: PropTypes.func.isRequired,
-    setEditParagraphSelected: PropTypes.func.isRequired,
+    id: PropTypes.number,
+    setSelectedIndex: PropTypes.func,
+    setDeleteParagraphSelected: PropTypes.func,
+    setEditParagraphSelected: PropTypes.func,
 }

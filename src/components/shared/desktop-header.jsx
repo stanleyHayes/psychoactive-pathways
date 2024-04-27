@@ -9,7 +9,7 @@ const DesktopHeader = () => {
     const {theme} = useSelector(selectUI);
 
     return (
-        <Toolbar variant="dense">
+        <Toolbar variant="regular">
             <Stack sx={{width: "100%"}} direction="row" justifyContent="space-between" alignItems="center">
                 <Typography
                     variant="h4"
@@ -24,7 +24,8 @@ const DesktopHeader = () => {
                             borderRadius: "100%",
                             fontSize: 32,
                             padding: 1,
-                            cursor: "pointer"
+                            cursor: "pointer",
+                            color: "secondary.main"
                         }}
                     />
                 ) : (
@@ -35,7 +36,8 @@ const DesktopHeader = () => {
                             borderRadius: "100%",
                             fontSize: 32,
                             padding: 1,
-                            cursor: "pointer"
+                            cursor: "pointer",
+                            color: "secondary.main"
                         }}
                     />
                 )}

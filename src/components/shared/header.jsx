@@ -5,9 +5,23 @@ import MobileHeader from "./mobile-header.jsx";
 const Header = () => {
     return (
         <Box>
-            <Box sx={{display: {xs: "none", md: "block"}}}>
+            <AppBar
+                square={true}
+                variant="elevation"
+                elevation={0}
+                sx={{
+                    display: {
+                        xs: "none",
+                        md: "block",
+                    },
+                    backgroundColor: "background.transparent",
+                    backdropFilter: "blur(36px)",
+                    borderBottomColor: "light.grey",
+                    borderBottomWidth: 1,
+                    borderBottomStyle: "solid"
+                }}>
                 <DesktopHeader/>
-            </Box>
+            </AppBar>
             <AppBar
                 square={true}
                 variant="elevation"

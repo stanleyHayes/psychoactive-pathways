@@ -1,4 +1,4 @@
-import {Button, Card, CardContent, Divider, Stack, Typography} from "@mui/material";
+import {Box, Button, Card, CardContent, Divider, Stack, Typography} from "@mui/material";
 import PropTypes from "prop-types";
 import {ChevronRight} from "@mui/icons-material";
 import {useNavigate} from "react-router-dom";
@@ -8,11 +8,13 @@ import moment from "moment";
 const Story = ({story}) => {
     const navigate = useNavigate();
     return (
-        <Card variant="outlined" sx={{height: "100%"}}>
-            <CardContent>
-                <Typography variant="body2" sx={{color: "text.primary", mb: 1}}>
-                    {story.content[0]}
-                </Typography>
+        <Card variant="elevation" sx={{height: "100%"}}>
+            <CardContent sx={{display: "flex", flexDirection: "column", height: "100%"}}>
+                <Box sx={{flex: 1, flexGrow: 1}}>
+                    <Typography variant="body2" sx={{color: "text.primary", mb: 1}}>
+                        {story.content[0]}
+                    </Typography>
+                </Box>
                 <Divider variant="fullWidth" sx={{my: 1}}/>
                 <Stack direction="row" spacing={2} justifyContent="flex-start" alignItems="center">
                     <Typography variant="body2" color="text.secondary">

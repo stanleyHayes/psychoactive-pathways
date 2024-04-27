@@ -19,7 +19,8 @@ const Layout = ({children}) => {
                 <Box sx={{
                     maxHeight: "100vh",
                     overflowY: "auto",
-                    overflowX: 'hidden'
+                    overflowX: 'hidden',
+                    mt: {xs: 6.1, md: 6.1}
                 }}>
                     {children}
                 </Box>

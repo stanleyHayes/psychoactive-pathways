@@ -19,10 +19,11 @@ const createStory = createAsyncThunk(
         try {
             const response = await STORIES_API.createStory(data);
             setLoading(false);
-            navigate('/stories')
+            navigate('/')
             return response.data.data;
         } catch (e) {
             const {message} = e.response.data;
+            setLoading(false);
             thunkAPI.rejectWithValue(message);
         }
     });

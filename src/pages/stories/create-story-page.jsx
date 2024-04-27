@@ -35,6 +35,7 @@ import Paragraph from "../../components/shared/paragraph.jsx";
 import {useNavigate} from "react-router-dom";
 import EditParagraphDialog from "../../components/dialogs/edit-paragraph-dialog.jsx";
 import ConfirmDeleteDialog from "../../components/dialogs/confirm-delete-dialog.jsx";
+import {HELPERS} from "../../utils/helpers.js";
 
 const CreateStoryPage = () => {
 
@@ -66,7 +67,7 @@ const CreateStoryPage = () => {
 
     const submitStory = () => {
         setLoading(true);
-        dispatch(STORY_ACTION_CREATORS.createStory({setLoading, data: content, navigate}));
+        dispatch(STORY_ACTION_CREATORS.createStory({setLoading, data: {content}, navigate}));
     }
 
     const [errorOpen, setErrorOpen] = useState(false);
@@ -93,7 +94,7 @@ const CreateStoryPage = () => {
     return (
         <Layout>
             {loading && <LinearProgress variant="query" color="secondary"/>}
-            <Box sx={{py: 8}}>
+            <Box sx={{py: 4}}>
                 <Container>
                     <Button
                         startIcon={<KeyboardArrowLeft/>}
@@ -226,9 +227,18 @@ const CreateStoryPage = () => {
                                 />
                             )}
                         </AnimatePresence>
-                        <Timeline position="alternate">
+                        <Timeline
+                            animate="animate"
+                            exit="exit"
+                            initial="initial"
+                            component={motion.div}
+                            variants={HELPERS.list}
+                            position="alternate">
                             {content.map((paragraph, index) => (
-                                <TimelineItem key={index}>
+                                <TimelineItem
+                                    component={motion.div}
+                                    variants={HELPERS.item}
+                                    key={index}>
                                     <TimelineOppositeContent>
                                         <Avatar variant="rounded" sx={{color: "light.secondary"}}>
                                             <Typography variant="h4" sx={{color: "secondary.main"}}>

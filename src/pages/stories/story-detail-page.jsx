@@ -28,6 +28,7 @@ import {
 } from "@mui/lab";
 import Paragraph from "../../components/shared/paragraph.jsx";
 import {useNavigate, useParams} from "react-router-dom";
+import {HELPERS} from "../../utils/helpers.js";
 
 const StoryDetailPage = () => {
 
@@ -48,7 +49,7 @@ const StoryDetailPage = () => {
     return (
         <Layout>
             {loading && <LinearProgress variant="query" color="secondary"/>}
-            <Box sx={{py: 8}}>
+            <Box sx={{py: 4}}>
                 <Container>
                     <Button
                         startIcon={<KeyboardArrowLeft/>}
@@ -108,12 +109,21 @@ const StoryDetailPage = () => {
                     <Divider sx={{my: 4}} variant="fullWidth"/>
 
                     <Box>
-                        <Typography sx={{color: "text.primary", mb: 2}} variant="h4">
+                        <Typography sx={{color: "text.primary", mb: 2}} variant="h6">
                             Story Timeline
                         </Typography>
-                        <Timeline position="alternate">
+                        <Timeline
+                            animate="animate"
+                            exit="exit"
+                            initial="initial"
+                            component={motion.div}
+                            variants={HELPERS.list}
+                            position="alternate">
                             {story?.content.map((paragraph, index) => (
-                                <TimelineItem key={index}>
+                                <TimelineItem
+                                    component={motion.div}
+                                    variants={HELPERS.item}
+                                    key={index}>
                                     <TimelineOppositeContent>
                                         <Avatar variant="rounded" sx={{color: "light.secondary"}}>
                                             <Typography variant="h4" sx={{color: "secondary.main"}}>

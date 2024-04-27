@@ -24,7 +24,7 @@ const StoriesPage = () => {
     return (
         <Layout>
             {loading && <LinearProgress variant="query" color="secondary"/>}
-            <Box sx={{py: 8}}>
+            <Box sx={{py: 4}}>
                 <Container>
                     <Grid container={true} justifyContent="space-between" alignItems="center" spacing={2}>
                         <Grid item={true} xs={12} md="auto">
@@ -42,7 +42,7 @@ const StoriesPage = () => {
                                     size="large"
                                     variant="contained"
                                     color="secondary"
-                                    sx={{textTransform: "none", borderRadius: 0.25}}>
+                                    sx={{textTransform: "none"}}>
                                     Create Story
                                 </Button>
                             </Link>

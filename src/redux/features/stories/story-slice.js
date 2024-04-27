@@ -1,6 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {STORIES_API} from "../../../api/stories.js";
-import {stories} from "./stories.js";
 
 const getStories = createAsyncThunk(
     'stories/getStories',
@@ -44,7 +43,7 @@ const storySlice = createSlice({
     initialState: {
         loading: false,
         error: null,
-        stories: [...stories],
+        stories: [],
         storyDetail: null
     },
     reducers: {},

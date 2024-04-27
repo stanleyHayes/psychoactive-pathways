@@ -33,11 +33,17 @@ import {
 } from "@mui/lab";
 import Paragraph from "../../components/shared/paragraph.jsx";
 import {useNavigate} from "react-router-dom";
+import EditParagraphDialog from "../../components/dialogs/edit-paragraph-dialog.jsx";
+import ConfirmDeleteDialog from "../../components/dialogs/confirm-delete-dialog.jsx";
 
 const CreateStoryPage = () => {
 
     const [content, setContent] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [editParagraphSelected, setEditParagraphSelected] = useState(false);
+    const [deleteParagraphSelected, setDeleteParagraphSelected] = useState(false);
+
+    const [selectedIndex, setSelectedIndex] = useState(-1);
 
     const dispatch = useDispatch();
 
@@ -64,11 +70,28 @@ const CreateStoryPage = () => {
     const [errorOpen, setErrorOpen] = useState(false);
 
     const handleRemove = () => {
+        setContent(content.filter((p, index) => {
+            return index !== selectedIndex;
+        }));
+        setSelectedIndex(-1);
+        setDeleteParagraphSelected(false);
     }
-    const handleEdit = () => {
+
+    const handleEdit = paragraph => {
+        setContent(content.map((p, index) => {
+            if (index === selectedIndex) {
+                return paragraph
+            }
+            return p;
+        }));
+        setSelectedIndex(-1);
+        setEditParagraphSelected(false);
     }
 
     const navigate = useNavigate();
+
+    console.log(selectedIndex)
+    console.log(content[selectedIndex]);
 
     return (
         <Layout>
@@ -76,7 +99,7 @@ const CreateStoryPage = () => {
             <Box sx={{py: 8}}>
                 <Container>
                     <Button
-                        startIcon={<KeyboardArrowLeft />}
+                        startIcon={<KeyboardArrowLeft/>}
                         onClick={() => navigate(-1)}
                         sx={{textTransform: "none", mb: 4}}
                         size="large"
@@ -225,16 +248,35 @@ const CreateStoryPage = () => {
                                     </TimelineSeparator>
                                     <TimelineContent>
                                         <Paragraph
+                                            setEditParagraphSelected={setEditParagraphSelected}
+                                            setDeleteParagraphSelected={setDeleteParagraphSelected}
+                                            setSelectedIndex={setSelectedIndex}
+                                            id={index}
                                             showActions={true}
                                             paragraph={paragraph}
-                                            handleRemove={handleRemove}
-                                            handleEdit={handleEdit}
                                         />
                                     </TimelineContent>
                                 </TimelineItem>
                             ))}
                         </Timeline>
                     </Box>
+
+                    <EditParagraphDialog
+                        onClose={() => setEditParagraphSelected(false)}
+                        handleSubmit={handleEdit}
+                        open={editParagraphSelected}
+                        paragraph={content[selectedIndex]}
+                    />
+
+                    <ConfirmDeleteDialog
+                        index={selectedIndex}
+                        content={content}
+                        onClose={() => setDeleteParagraphSelected(false)}
+                        handleSubmit={() => handleEdit(selectedIndex)}
+                        open={deleteParagraphSelected}
+                        handleDelete={handleRemove}
+                    />
+
                 </Container>
             </Box>
         </Layout>

@@ -1,15 +1,23 @@
 import {Button, Card, CardContent, Stack, Typography} from "@mui/material";
 import PropTypes from "prop-types";
 
-const Paragraph = ({paragraph, handleRemove, handleEdit, showActions}) => {
+const Paragraph = ({
+                       paragraph,
+                       showActions,
+                       id,
+                       setSelectedIndex,
+                       setDeleteParagraphSelected,
+                       setEditParagraphSelected
+                   }) => {
 
     const handleRemoveClicked = () => {
-        handleRemove(paragraph);
+        setSelectedIndex(id);
+        setDeleteParagraphSelected(true);
     }
 
-
     const handleEditClicked = () => {
-        handleEdit(paragraph);
+        setSelectedIndex(id);
+        setEditParagraphSelected(true);
     }
 
 
@@ -48,7 +56,10 @@ export default Paragraph;
 
 Paragraph.propTypes = {
     paragraph: PropTypes.string.isRequired,
-    handleRemove: PropTypes.func,
     handleEdit: PropTypes.func,
-    showActions: PropTypes.bool.isRequired
+    showActions: PropTypes.bool.isRequired,
+    id: PropTypes.number.isRequired,
+    setSelectedIndex: PropTypes.func.isRequired,
+    setDeleteParagraphSelected: PropTypes.func.isRequired,
+    setEditParagraphSelected: PropTypes.func.isRequired,
 }

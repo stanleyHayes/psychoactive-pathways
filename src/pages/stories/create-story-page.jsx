@@ -57,7 +57,7 @@ const CreateStoryPage = () => {
             paragraph: Yup.string().required('Content is required'),
         }),
         onSubmit: (values, formikHelpers) => {
-            setContent([...content, values.paragraph]);
+            setContent([...content, values.paragraph.trim()]);
             formikHelpers.resetForm();
         }
     });
@@ -89,9 +89,6 @@ const CreateStoryPage = () => {
     }
 
     const navigate = useNavigate();
-
-    console.log(selectedIndex)
-    console.log(content[selectedIndex]);
 
     return (
         <Layout>

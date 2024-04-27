@@ -3,9 +3,9 @@ import {STORIES_API} from "../../../api/stories.js";
 
 const getStories = createAsyncThunk(
     'stories/getStories',
-    async ({token}, thunkAPI) => {
+    async (arg, thunkAPI) => {
         try {
-            const response = await STORIES_API.getStories(token);
+            const response = await STORIES_API.getStories();
             return response.data;
         } catch (e) {
             const {message} = e.response.data;

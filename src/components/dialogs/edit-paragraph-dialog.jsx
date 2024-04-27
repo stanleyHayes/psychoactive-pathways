@@ -13,7 +13,6 @@ import PropTypes from "prop-types";
 import {Warning} from "@mui/icons-material";
 import {useFormik} from "formik";
 import * as Yup from "yup";
-import {useEffect} from "react";
 
 const EditParagraphDialog = ({open, onClose, handleSubmit, paragraph}) => {
 

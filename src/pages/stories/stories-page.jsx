@@ -1,18 +1,25 @@
 import Layout from "../../components/layout/layout.jsx";
 import {Alert, AlertTitle, Box, Button, Container, Grid, LinearProgress, Stack, Typography} from "@mui/material";
-import {useSelector} from "react-redux";
-import {selectStories} from "../../redux/features/stories/story-slice.js";
+import {useDispatch, useSelector} from "react-redux";
+import {selectStories, STORY_ACTION_CREATORS} from "../../redux/features/stories/story-slice.js";
 import {Link} from "react-router-dom";
 import Empty from "../../components/shared/empty.jsx";
 import {AnimatePresence, motion} from "framer-motion";
 import {CloseOutlined} from "@mui/icons-material";
 import {HELPERS} from "../../utils/helpers.js";
 import Story from "../../components/shared/story.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const StoriesPage = () => {
     const {stories, error, loading} = useSelector(selectStories);
     const [errorOpen, setErrorOpen] = useState(false);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(STORY_ACTION_CREATORS.getStories());
+    }, []);
+
     return (
         <Layout>
             {loading && <LinearProgress variant="query" color="secondary"/>}
